@@ -20,89 +20,139 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <style>
+      :root {
+        --active-text: #1f2535;
+        --bg-page: #050b21;
+        --bg-card: #1f2535;
+        --bg-header: #1f2535;
+        --bg-button: #2f354b;
+        --text-main: #ffffff;
+        --text-muted: #94a3b8;
+        --border: #5b6177;
+        --card-inner-btn: #1d2334;
+        --accent: #f05d58;
+      }
+
+      :root.light {
+        --active-text: #ffffff;
+        --bg-page: #eff6ff;
+        --bg-card: #ffffff;
+        --bg-header: #ffffff;
+        --bg-button: #ffffff;
+        --text-main: #1f2535;
+        --text-muted: #64748b;
+        --border: #e2e8f0;
+        --card-inner-btn: #ffffff;
+      }
+
+      body {
+        background-color: var(--bg-page);
+        color: var(--text-main);
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .active-filter {
+        background-color: var(--accent) !important;
+        border-color: var(--accent) !important;
+        color: var(
+          --active-text
+        ) !important; /* One variable to rule them both */
+      }
+
+      /* This class will force the button to change colors no matter what */
+      .active-filter-light {
+        background-color: var(--accent) !important;
+        color: white;
+        border-color: var(--accent) !important;
+      }
+
+      .active-filter-dark {
+        background-color: var(--accent) !important;
+        color: #1f2535;
+        border-color: var(--accent) !important;
+      }
+
       .attribution {
         font-size: 11px;
         text-align: center;
+        margin-top: 20px;
       }
       .attribution a {
-        color: wheat;
+        color: #f15c58;
       }
     </style>
   </head>
-  <body class="bg-[#050B21] text-white p-3 font-[Noto_Sans]">
+  <body class="bg-[#050B21] text-white p-3 font-[Noto_Sans] lg:p-9">
     <header
-      class="bg-[#1F2535] flex items-center justify-between px-3 py-2 rounded-lg"
+      class="bg-[var(--bg-header)] flex items-center justify-between px-3 py-2 rounded-lg border border-[var(--border)] shadow-sm"
     >
       <img
         src="assets/images/logo-dark-theme.svg"
-        class="text-white"
-        fill="currentColor"
+        id="main-logo"
+        alt="Logo"
+        class="h-8"
       />
+
       <button
-        class="bg-[#2F354B] px-[0.85rem] py-3 rounded-lg focus:ring-2 focus:ring-[#F15C58] outline-none"
+        id="theme-toggle"
+        class="bg-[var(--bg-button)] px-[0.85rem] py-3 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--accent)] outline-none cursor-pointer transition-transform active:scale-95"
       >
-        <img src="assets/images/icon-sun.svg" />
+        <img
+          src="assets/images/icon-sun.svg"
+          id="theme-icon"
+          alt="Toggle Theme"
+        />
       </button>
     </header>
 
     <main class="mt-9">
-      <div class="flex flex-col items-center gap-3">
-        <h1 class="text-center text-4xl font-extrabold">Extensions List</h1>
-        <div class="flex gap-2">
+      <div
+        class="flex flex-col gap-3 items-center lg:flex-row lg:justify-between"
+      >
+        <h1 class="text-center text-4xl font-extrabold text-[var(--text-main)]">
+          Extensions List
+        </h1>
+
+        <div class="flex gap-2" id="filter-buttons">
           <button
-            class="bg-[#2F354B] text-white rounded-full px-4 py-1 border border-[#5b6177] cursor-pointer hover:bg-[#F15C58] focus:ring-2 focus:ring-[#F15C58] outline-none"
+            class="bg-[var(--bg-button)] text-[var(--text-main)] rounded-full px-5 py-1.5 border border-[var(--border)] cursor-pointer hover:bg-[var(--accent)] hover:text-white hover:border-[var(--accent)] transition-colors focus:ring-2 focus:ring-[var(--accent)] outline-none"
+            data-filter="all"
           >
             All
           </button>
           <button
-            class="bg-[#2F354B] text-white rounded-full px-4 py-1 border border-[#5b6177] cursor-pointer hover:bg-[#F15C58] focus:ring-2 focus:ring-[#F15C58] outline-none"
+            class="bg-[var(--bg-button)] text-[var(--text-main)] rounded-full px-5 py-1.5 border border-[var(--border)] cursor-pointer hover:bg-[var(--accent)] hover:text-white hover:border-[var(--accent)] transition-colors focus:ring-2 focus:ring-[var(--accent)] outline-none"
+            data-filter="active"
           >
             Active
           </button>
           <button
-            class="bg-[#2F354B] text-white rounded-full px-4 py-1 border border-[#5b6177] cursor-pointer hover:bg-[#F15C58] focus:ring-2 focus:ring-[#F15C58] outline-none"
+            class="bg-[var(--bg-button)] text-[var(--text-main)] rounded-full px-5 py-1.5 border border-[var(--border)] cursor-pointer hover:bg-[var(--accent)] hover:text-white hover:border-[var(--accent)] transition-colors focus:ring-2 focus:ring-[var(--accent)] outline-none"
+            data-filter="inactive"
           >
             Inactive
           </button>
         </div>
-        <div class="flex items-center justify-center gap-3 flex-wrap mt-3">
-          <div
-            class="bg-[#1F2535] rounded-2xl px-3 py-5 border border-[#5b6177]"
-          >
-            <div class="flex gap-3 items-center">
-              <img src="assets/images/logo-devlens.svg" class="self-start" />
-              <div class="flex flex-col gap-1">
-                <p class="font-bold text-lg">DevLens</p>
-                <p class="text-slate-400">
-                  Quickly inspect page layouts and visualize element boundaries.
-                </p>
-              </div>
-            </div>
-            <div class="flex items-center justify-between mt-7">
-              <button
-                class="bg-[#1D2334] px-4 py-[0.40rem] rounded-full border border-[#5b6177]"
-              >
-                Remove
-              </button>
-              <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" value="" class="sr-only peer" />
-                <div
-                  class="group peer ring-0 bg-[#545A6A] rounded-full outline-none duration-300 after:duration-300 w-11 h-6 shadow-md peer-checked:bg-[#F15C58] peer-focus:outline-none after:rounded-full after:absolute after:bg-gray-50 after:outline-none after:h-4 after:w-4 after:top-1 after:left-1 after:flex after:justify-center after:items-center peer-checked:after:translate-x-[1.3rem] peer-hover:after:scale-95"
-                ></div>
-              </label>
-            </div>
-          </div>
-        </div>
       </div>
+      <div
+        class="flex items-center justify-center gap-4 flex-wrap mt-6 w-full"
+        id="extensions-container"
+      ></div>
     </main>
 
-    <div class="attribution">
+    <footer class="mt-10 mb-5 text-[11px] text-center text-[var(--text-muted)]">
       Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
-      Coded by
-      <a href="https://www.frontendmentor.io/profile/AbdullahHamadax"
+      <a
+        href="https://www.frontendmentor.io?ref=challenge"
+        class="text-[var(--accent)] underline"
+        >Frontend Mentor</a
+      >. Coded by
+      <a
+        href="https://www.frontendmentor.io/profile/AbdullahHamadax"
+        class="text-[var(--accent)] underline"
         >Abdallah Hamada</a
       >.
-    </div>
+    </footer>
+    <script src="scripts.js" type="module"></script>
   </body>
 </html>
