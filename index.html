@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <title>Frontend Mentor | Browser extensions manager UI</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: wheat;
+      }
+    </style>
+  </head>
+  <body class="bg-[#050B21] text-white p-3 font-[Noto_Sans]">
+    <header
+      class="bg-[#1F2535] flex items-center justify-between px-3 py-2 rounded-lg"
+    >
+      <img
+        src="assets/images/logo-dark-theme.svg"
+        class="text-white"
+        fill="currentColor"
+      />
+      <button
+        class="bg-[#2F354B] px-[0.85rem] py-3 rounded-lg focus:ring-2 focus:ring-[#F15C58] outline-none"
+      >
+        <img src="assets/images/icon-sun.svg" />
+      </button>
+    </header>
+
+    <main class="mt-9">
+      <div class="flex flex-col items-center gap-3">
+        <h1 class="text-center text-4xl font-extrabold">Extensions List</h1>
+        <div class="flex gap-2">
+          <button
+            class="bg-[#2F354B] text-white rounded-full px-4 py-1 border border-[#5b6177] cursor-pointer hover:bg-[#F15C58] focus:ring-2 focus:ring-[#F15C58] outline-none"
+          >
+            All
+          </button>
+          <button
+            class="bg-[#2F354B] text-white rounded-full px-4 py-1 border border-[#5b6177] cursor-pointer hover:bg-[#F15C58] focus:ring-2 focus:ring-[#F15C58] outline-none"
+          >
+            Active
+          </button>
+          <button
+            class="bg-[#2F354B] text-white rounded-full px-4 py-1 border border-[#5b6177] cursor-pointer hover:bg-[#F15C58] focus:ring-2 focus:ring-[#F15C58] outline-none"
+          >
+            Inactive
+          </button>
+        </div>
+        <div class="flex items-center justify-center gap-3 flex-wrap mt-3">
+          <div
+            class="bg-[#1F2535] rounded-2xl px-3 py-5 border border-[#5b6177]"
+          >
+            <div class="flex gap-3 items-center">
+              <img src="assets/images/logo-devlens.svg" class="self-start" />
+              <div class="flex flex-col gap-1">
+                <p class="font-bold text-lg">DevLens</p>
+                <p class="text-slate-400">
+                  Quickly inspect page layouts and visualize element boundaries.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-7">
+              <button
+                class="bg-[#1D2334] px-4 py-[0.40rem] rounded-full border border-[#5b6177]"
+              >
+                Remove
+              </button>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" value="" class="sr-only peer" />
+                <div
+                  class="group peer ring-0 bg-[#545A6A] rounded-full outline-none duration-300 after:duration-300 w-11 h-6 shadow-md peer-checked:bg-[#F15C58] peer-focus:outline-none after:rounded-full after:absolute after:bg-gray-50 after:outline-none after:h-4 after:w-4 after:top-1 after:left-1 after:flex after:justify-center after:items-center peer-checked:after:translate-x-[1.3rem] peer-hover:after:scale-95"
+                ></div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+      Coded by
+      <a href="https://www.frontendmentor.io/profile/AbdullahHamadax"
+        >Abdallah Hamada</a
+      >.
+    </div>
+  </body>
+</html>
