@@ -1,7 +1,13 @@
 const themeSwitchBtn = document.getElementById("theme-toggle");
 const logoImg = document.getElementById("main-logo");
 const themeIcon = document.getElementById("theme-icon");
+const savedTheme = localStorage.getItem("theme") || "dark";
+const extensionsContainer = document.getElementById("extensions-container");
+const response = await fetch("./data.json");
+let currentFilter = "all";
 
+let extensionsArray = [];
+extensionsArray = await response.json();
 function applyTheme(theme) {
   if (theme === "light") {
     document.documentElement.classList.add("light");
@@ -14,7 +20,6 @@ function applyTheme(theme) {
   }
 }
 
-const savedTheme = localStorage.getItem("theme") || "dark";
 applyTheme(savedTheme);
 
 themeSwitchBtn.addEventListener("click", () => {
@@ -24,15 +29,6 @@ themeSwitchBtn.addEventListener("click", () => {
   localStorage.setItem("theme", newTheme);
   applyTheme(newTheme);
 });
-
-const extensionsContainer = document.getElementById("extensions-container");
-
-let currentFilter = "all";
-
-const response = await fetch("./data.json");
-
-let extensionsArray = [];
-extensionsArray = await response.json();
 
 const filterBtns = document.getElementById("filter-buttons");
 
@@ -66,7 +62,6 @@ extensionsContainer.addEventListener("click", (e) => {
       .closest("label")
       .querySelector('input[type="checkbox"]');
     const toggledExtension = checkbox.dataset.name;
-    console.log("Toggling:", toggledExtension);
     extensionsArray = extensionsArray.map((ext) => {
       if (ext.name === toggledExtension) {
         return { ...ext, isActive: !ext.isActive };
