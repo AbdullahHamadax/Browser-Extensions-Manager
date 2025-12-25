@@ -47,19 +47,8 @@ filterBtns.addEventListener("click", (e) => {
     btn.classList.remove("active-filter");
   });
 
-  let filteredExtensions;
-
-  if (clickedBtn.dataset.filter === "active") {
-    filteredExtensions = extensionsArray.filter((ex) => ex.isActive === true);
-  } else if (clickedBtn.dataset.filter === "inactive") {
-    filteredExtensions = extensionsArray.filter((ex) => ex.isActive === false);
-  } else {
-    filteredExtensions = extensionsArray;
-  }
-
   clickedBtn.classList.add("active-filter");
   currentFilter = clickedBtn.dataset.filter;
-  console.log(currentFilter);
   refreshUI();
 });
 
